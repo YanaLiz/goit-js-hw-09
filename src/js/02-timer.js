@@ -1,14 +1,14 @@
-import flatpickr from "flatpickr";
-import "flatpickr/dist/flatpickr.min.css";
+import flatpickr from 'flatpickr';
+import 'flatpickr/dist/flatpickr.min.css';
 import Notiflix from 'notiflix';
 
 refs = {
-    input: document.querySelector('#datetime-picker'),
-    btnStart: document.querySelector('[data-start]'),
-    days: document.querySelector('[data-days]'),
-    hours: document.querySelector('[data-hours]'),
-    minutes: document.querySelector('[data-minutes]'),
-    seconds: document.querySelector('[data-seconds]'),
+    input: document.querySelector(`#datetime-picker`),
+    btnStart: document.querySelector(`[data-start]`),
+    days: document.querySelector(`[data-days]`),
+    hours: document.querySelector(`[data-hours]`),
+    minutes: document.querySelector(`[data-minutes]`),
+    seconds: document.querySelector(`[data-seconds]`),
 }
 
 let timerId = null;
@@ -22,15 +22,16 @@ const options = {
   minuteIncrement: 1,
     onClose(selectedDates) {
         let currentDate = new Date();
-        let exam = currentDate < selectedDates[0];
-        if (exam) {
+        let exan = currentDate < selectedDates[0];
+        if (exan) {
             refs.btnStart.removeAttribute('disabled');
             refs.btnStart.addEventListener('click', () => {
                 timerId = setInterval(() => {
                     refs.btnStart.setAttribute('disabled', true);
+                    refs.btnStart.setAttribute('disabled', true);
                     currentDate = new Date();
                     let delta = selectedDates[0] - currentDate;
-                    let value = convertMs(delta);
+                    let values = convertMs(delta);
                     addLeadingZero(values);
                     if (delta < 1000) {
                         clearInterval(timerId);
@@ -52,7 +53,7 @@ function addLeadingZero(values) {
     refs.seconds.textContent = values.seconds.toString().padStart(2, '0');
 }
 
-flatpickr(`input[type=""text]`, options);
+flatpickr(`input[type="text"]`, options);
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
