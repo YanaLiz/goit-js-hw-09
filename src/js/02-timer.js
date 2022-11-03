@@ -3,12 +3,12 @@ import 'flatpickr/dist/flatpickr.min.css';
 import Notiflix from 'notiflix';
 
 refs = {
-    input: document.querySelector(`#datetime-picker`),
-    btnStart: document.querySelector(`[data-start]`),
-    days: document.querySelector(`[data-days]`),
-    hours: document.querySelector(`[data-hours]`),
-    minutes: document.querySelector(`[data-minutes]`),
-    seconds: document.querySelector(`[data-seconds]`),
+    input: document.querySelector('#datetime-picker'),
+    btnStart: document.querySelector('[data-start]'),
+    days: document.querySelector('[data-days]'),
+    hours: document.querySelector('[data-hours]'),
+    minutes: document.querySelector('[data-minutes]'),
+    seconds: document.querySelector('[data-seconds]'),
 }
 
 let timerId = null;
@@ -61,7 +61,6 @@ function convertMs(ms) {
   const minute = second * 60;
   const hour = minute * 60;
   const day = hour * 24;
-
   // Remaining days
   const days = Math.floor(ms / day);
   // Remaining hours
