@@ -2,18 +2,18 @@ import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import Notiflix from 'notiflix';
 
-refs = {
-    input: document.querySelector('#datetime-picker'),
-    btnStart: document.querySelector('[data-start]'),
-    days: document.querySelector('[data-days]'),
-    hours: document.querySelector('[data-hours]'),
-    minutes: document.querySelector('[data-minutes]'),
-    seconds: document.querySelector('[data-seconds]'),
-}
+
+    const input = document.querySelector('#datetime-picker');
+    const btnStart= document.querySelector('[data-start]');
+    const days = document.querySelector('[data-days]');
+    const hours = document.querySelector('[data-hours]');
+    const minutes= document.querySelector('[data-minutes]');
+    const seconds= document.querySelector('[data-seconds]');
+
 
 let timerId = null;
 const DELAY = 1000;
-refs.btnStart.setAttribute('disabled', true);
+btnStart.setAttribute('disabled', true);
 
 const options = {
   enableTime: true,
@@ -24,11 +24,11 @@ const options = {
         let currentDate = new Date();
         let exan = currentDate < selectedDates[0];
         if (exan) {
-            refs.btnStart.removeAttribute('disabled');
-            refs.btnStart.addEventListener('click', () => {
+            btnStart.removeAttribute('disabled');
+            btnStart.addEventListener('click', () => {
                 timerId = setInterval(() => {
-                    refs.btnStart.setAttribute('disabled', true);
-                    refs.btnStart.setAttribute('disabled', true);
+                    btnStart.setAttribute('disabled', true);
+                    btnStart.setAttribute('disabled', true);
                     currentDate = new Date();
                     let delta = selectedDates[0] - currentDate;
                     let values = convertMs(delta);
@@ -40,17 +40,17 @@ const options = {
                 }, DELAY);
             });
         } else {
-            refs.btnStart.setAttribute('disabled', true);
+            btnStart.setAttribute('disabled', true);
             Notiflix.Notify.failure('Please choose a date in the fature');
         }
   },
 };
 
 function addLeadingZero(values) {
-    refs.days.textContent = values.days.toString().padStart(2, '0');
-    refs.hours.textContent = values.hours.toString().padStart(2, '0');
-    refs.minutes.textContent = values.minutes.toString().padStart(2, '0');
-    refs.seconds.textContent = values.seconds.toString().padStart(2, '0');
+    days.textContent = values.days.toString().padStart(2, '0');
+    hours.textContent = values.hours.toString().padStart(2, '0');
+    minutes.textContent = values.minutes.toString().padStart(2, '0');
+    seconds.textContent = values.seconds.toString().padStart(2, '0');
 }
 
 flatpickr(`input[type="text"]`, options);
